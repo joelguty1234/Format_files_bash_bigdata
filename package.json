@@ -4,9 +4,9 @@
   "description": "",
   "main": "browser.js",
   "scripts": {
+    "start": "node browser.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "start": "node browser.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
