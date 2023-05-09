@@ -1,0 +1,50 @@
+const fs = require('fs');
+const readline = require('readline');
+
+const inputFilePath = './files/input.dat';
+const outputFilePath = './files/output.dat';
+
+const readStream = fs.createReadStream(inputFilePath);
+const writeStream = fs.createWriteStream(outputFilePath);
+
+const rl = readline.createInterface({
+  input: readStream
+});
+
+let currentLine = '';
+let lineNumber = 0;
+let header
+
+rl.on('line', (line) => {
+  lineNumber++;
+  if (lineNumber === 1) {
+    header = line
+    console.log(line)
+    return;
+  }
+  if (currentLine.split('||').length - 1 < 7) {   // reemplazar || por el separador que desees y la cantidad que debe tener cada ||
+    //console.log(currentLine)
+    currentLine += line;
+  } else {
+    writeStream.write(currentLine + '\n');
+    currentLine = line;
+  }
+});
+
+rl.on('close', () => {
+  writeStream.write(currentLine + '\n');
+  console.log('Done!');
+});
+
+///////////////////
+fs.readFile(outputFilePath, 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    const newData = `${header}\n${data}`;
+  
+    fs.writeFile(outputFilePath, newData, 'utf8', function (err) {
+      if (err) return console.log(err);
+      console.log('Done!');
+    });
+  });

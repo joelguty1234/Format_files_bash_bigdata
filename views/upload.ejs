@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Format Document</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('form').submit(function(event) {
+          event.preventDefault(); // Prevent page from reloading on submit
+          $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: new FormData($('form')[0]), // Use FormData to send files
+            processData: false,
+            contentType: false,
+            success: function(response) {
+              $('#message').text(response); // Update message on page
+              $('#download').show(); // Show download button
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus + ': ' + errorThrown);
+            }
+          });
+        });
+
+        $('#download').click(function() {
+          window.location.href = '/download';
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Format Document</h1>
+    <form>
+      <label for="separator_character">Separator character:</label>
+      <input type="text" id="separator_character" name="separator_character"><br><br>
+      <label for="num_columns">Number of columns:</label>
+      <input type="number" id="num_columns" name="num_columns"><br><br>
+      <input type="file" name="file"><br><br>
+      <button type="submit">Upload</button>
+    </form>
+    <p id="message"></p> <!-- Add an element to display the message -->
+    <button id="download" style="display:none;">Download Output</button> <!-- Add download button -->
+  </body>
+</html>
