@@ -4,6 +4,7 @@ const { processInputFile } = require('./correct');
 const fs = require('fs');
 const app = express();
 
+let port = process.env.PORT || 3000;
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 
@@ -64,6 +65,6 @@ app.get('/download', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server started on http://localhost:3000');
+app.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
 });
