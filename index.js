@@ -9,8 +9,8 @@ let port = process.env.PORT || 3000;
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('views'));
-const inputdirectory = path.join(process.cwd(), '/tmp/uploads');
-const outputdirectory = path.join(process.cwd(), '/tmp/clean');
+const inputdirectory = path.join(process.cwd(), 'tmp/uploads');
+const outputdirectory = path.join(process.cwd(), 'tmp/clean');
 console.log(inputdirectory)
 
 if (!fs.existsSync(inputdirectory)) {
