@@ -56,7 +56,8 @@ async function yourFunctionName() {
   console.log('Function called!');
   //inputFilePath = `./tmp/uploads/${originalname}`;
   inputFilePath = path.join(inputdirectory, originalname);
-  outputFilePath = `./tmp/clean/clean_${originalname}`;
+  //outputFilePath = `./tmp/clean/clean_${originalname}`;
+  outputFilePath = path.join(outputFilePath, originalname);
   await processInputFile(inputFilePath, outputFilePath, separator_character, num_columns);
   fs.unlink(inputFilePath, (err) => {
     if (err) {
