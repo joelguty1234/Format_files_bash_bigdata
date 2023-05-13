@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
   <head>
     <title>Format Document</title>
     <link rel="stylesheet" href="style.css?v=2">
@@ -17,6 +17,8 @@
             success: function(response) {
               $('#message').text(response); // Update message on page
               $('#download').show(); // Show download button
+              $('#refresh').show(); // Show download button
+              
             },
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(textStatus + ': ' + errorThrown);
@@ -24,9 +26,15 @@
           });
         });
 
-        $('#download').click(function() {
-          window.location.href = '/download';
+        $('#download').click(async function() {
+          window.location.href = '/download'; 
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          window.location.href = '/';
         });
+        $('#refresh').click(function() {
+          window.location.href = '/';    
+        });
+        
       });
     </script>
   </head>
@@ -40,7 +48,9 @@
       <input type="file" name="file"><br><br>
       <button type="submit">Upload</button>
     </form>
-    <p id="message"></p> <!-- Add an element to display the message -->
-    <button id="download" style="display:none;">Download Output</button> <!-- Add download button -->
+    <p id="message"></p>
+    <button id="download" style="display:none;">Download Output Ready</button>
+    <p id="message2"></p>
+    <button id="refresh" style="display:none;">refresh</button>
   </body>
 </html>
