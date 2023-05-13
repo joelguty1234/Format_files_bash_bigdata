@@ -9,8 +9,11 @@ let port = process.env.PORT || 3000;
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('./views'));
-const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
-const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
+// const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
+// const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
+
+const inputdirectory = './tmp/uploads/';
+const outputdirectory = './tmp/clean/';
 const kaka = path.join(process.cwd(), '/views/upload.ejs');
 console.log(inputdirectory)
 console.log(outputdirectory)
