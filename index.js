@@ -12,6 +12,7 @@ app.use(express.static('views'));
 const inputdirectory = path.join(process.cwd(), 'tmp/uploads');
 const outputdirectory = path.join(process.cwd(), 'tmp/clean');
 console.log(inputdirectory)
+console.log(outputdirectory)
 
 if (!fs.existsSync(inputdirectory)) {
   fs.mkdirSync(inputdirectory, { recursive: true });
