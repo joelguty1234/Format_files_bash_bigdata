@@ -9,6 +9,7 @@ function processInputFile(
 ) {
   return new Promise((resolve, reject) => {
     const readStream = fs.createReadStream(inputFilePath);
+    console.log(`location ${inputFilePath}`)
     const writeStream = fs.createWriteStream(outputFilePath);
 
     const rl = readline.createInterface({
