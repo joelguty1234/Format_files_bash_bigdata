@@ -3,22 +3,24 @@ const multer = require('multer');
 const { processInputFile } = require('./correct');
 const fs = require('fs');
 const app = express();
-const onFinished = require('on-finished');
+const path = require('path');
 
 let port = process.env.PORT || 3000;
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('views'));
+const uploadDirectory = path.join(process.cwd(), '/tmp/uploads');
+console.log(uploadDirectory)
 
-if (!fs.existsSync('./tmp/uploads')) {
-  fs.mkdirSync('./tmp/uploads', { recursive: true });
+if (!fs.existsSync(uploadDirectory)) {
+  fs.mkdirSync(uploadDirectory, { recursive: true });
 }
 if (!fs.existsSync('./tmp/clean')) {
   fs.mkdirSync('./tmp/clean', { recursive: true });
 }
 
 const storage = multer.diskStorage({
-  destination: './tmp/uploads',
+  destination: uploadDirectory,
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
