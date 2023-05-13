@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { processInputFile } = require('./correct');
+const { processInputFile } = require('../correct');
 const fs = require('fs');
 const app = express();
 const path = require('path');
