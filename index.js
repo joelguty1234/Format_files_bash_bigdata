@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');  
 
 app.get('/', (req, res) => {
   res.render('upload', { showDownload: false });
