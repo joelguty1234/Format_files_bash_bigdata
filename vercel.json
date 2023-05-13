@@ -11,6 +11,7 @@
             "src": "/(.*)",
             "dest": "/"
         },
-        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
+        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
+        { "src": "/views/style.css", "dest": "/views/style.css" }
     ]
 }
