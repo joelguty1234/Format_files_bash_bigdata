@@ -14,12 +14,12 @@ const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
 console.log(inputdirectory)
 console.log(outputdirectory)
 
-if (!fs.existsSync(inputdirectory)) {
-  fs.mkdirSync(inputdirectory, { recursive: true });
-}
-if (!fs.existsSync(outputdirectory)) {
-  fs.mkdirSync(outputdirectory, { recursive: true });
-}
+// if (!fs.existsSync(inputdirectory)) {
+//   fs.mkdirSync(inputdirectory, { recursive: true });
+// }
+// if (!fs.existsSync(outputdirectory)) {
+//   fs.mkdirSync(outputdirectory, { recursive: true });
+// }
 
 const storage = multer.diskStorage({
   destination: inputdirectory,
