@@ -11,8 +11,10 @@ let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, o
 app.use(express.static('./views'));
 const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
 const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
+const kaka = path.join(process.cwd(), '/views/upload.ejs');
 console.log(inputdirectory)
 console.log(outputdirectory)
+console.log(kaka)
 
 // if (!fs.existsSync(inputdirectory)) {
 //   fs.mkdirSync(inputdirectory, { recursive: true });
@@ -33,7 +35,7 @@ const upload = multer({ storage: storage });
 app.set('view engine', 'ejs');  
 
 app.get('/', (req, res) => {
-  res.render('upload.ejs', { showDownload: false });
+  res.render(kaka, { showDownload: false });
   console.log("Inicio")
 });
 
