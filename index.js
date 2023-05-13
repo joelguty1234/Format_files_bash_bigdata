@@ -15,7 +15,7 @@ const kaka = path.join(process.cwd(), '/views/upload.ejs');
 console.log(inputdirectory)
 console.log(outputdirectory)
 console.log(kaka)
-
+app.set('view engine', 'ejs');  
 // if (!fs.existsSync(inputdirectory)) {
 //   fs.mkdirSync(inputdirectory, { recursive: true });
 // }
@@ -23,16 +23,17 @@ console.log(kaka)
 //   fs.mkdirSync(outputdirectory, { recursive: true });
 // }
 
-const storage = multer.diskStorage({
-  destination: inputdirectory,
+var storage = multer.diskStorage({
+  //destination: inputdirectory,
+  destination: function (req, file, cb) {
+    cb(null, inputdirectory)
+  },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
 });
 
-const upload = multer({ storage: storage });
-
-app.set('view engine', 'ejs');  
+var upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
   res.render(kaka, { showDownload: false });
