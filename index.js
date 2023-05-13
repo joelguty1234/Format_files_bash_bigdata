@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {
-  console.log("Inicio de upload")
+  
   try {
   originalname = req.file.originalname;
   separator_character = req.body.separator_character;
