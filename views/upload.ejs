@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
-  <head>
-    <link rel="shortcut icon" href="#">
-    <title>Format Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('form').submit(function(event) {
-          event.preventDefault(); // Prevent page from reloading on submit
-          $.ajax({
-            url: '/upload',
-            type: 'POST',
-            data: new FormData($('form')[0]), // Use FormData to send files
-            processData: false,
-            contentType: false,
-            success: function(response) {
-              $('#message').text(response); // Update message on page
-              $('#download').show(); // Show download button
-              $('#refresh').show(); // Show download button
-              
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log(textStatus + ': ' + errorThrown);
-            }
-          });
-        });
+<head>
+  <link rel="shortcut icon" href="#">
+  <title>Format Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <h1>Format Document</h1>
+  <form id="uploadForm">
+    <label for="separator_character">Separator character:</label>
+    <input type="text" id="separator_character" name="separator_character"><br><br>
+    <label for="num_columns">Number of columns:</label>
+    <input type="number" id="num_columns" name="num_columns"><br><br>
+    <input type="file" name="file"><br><br>
+    <button type="submit">Upload</button>
+  </form>
+  <p id="message"></p>
+  <button id="download" style="display:none;">Download Output Ready</button>
+  <p id="message2"></p>
+  <button id="refresh" style="display:none;">refresh</button>
+  <h3>by: Joel Gutierrez E.</h3>
 
-        $('#download').click(async function() {
-          window.location.href = '/download'; 
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          window.location.href = '/';
-        });
-        $('#refresh').click(function() {
-          window.location.href = '/';    
-        });
-        
-      });
-    </script>
-  </head>
-  <body>
-    <h1>Format Document</h1>
-    <form>
-      <label for="separator_character">Separator character:</label>
-      <input type="text" id="separator_character" name="separator_character"><br><br>
-      <label for="num_columns">Number of columns:</label>
-      <input type="number" id="num_columns" name="num_columns"><br><br>
-      <input type="file" name="file"><br><br>
-      <button type="submit">Upload</button>
-    </form>
-    <p id="message"></p>
-    <button id="download" style="display:none;">Download Output Ready</button>
-    <p id="message2"></p>
-    <button id="refresh" style="display:none;">refresh</button>
-    <h3>by: Joel Gutierrez E.</h3>
-  </body>
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent page from reloading on submit
+      
+      var formData = new FormData(this);
+      var request = new XMLHttpRequest();
+      request.open("POST", "/upload");
+      
+      request.onload = function() {
+        if (request.status === 200) {
+          document.getElementById("message").textContent = request.responseText;
+          document.getElementById("download").style.display = "block";
+          document.getElementById("refresh").style.display = "block";
+        } else {
+          console.error("Request failed. Status: " + request.status);
+        }
+      };
+      
+      request.onerror = function() {
+        console.error("Request failed");
+      };
+      
+      request.send(formData);
+    });
+
+    document.getElementById("download").addEventListener("click", function() {
+      window.location.href = "/download";
+      setTimeout(function() {
+        window.location.href = "/";
+      }, 1000);
+    });
+
+    document.getElementById("refresh").addEventListener("click", function() {
+      window.location.href = "/";
+    });
+  </script>
+</body>
 </html>
