@@ -11,7 +11,7 @@ let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, o
 app.use(express.static('views'));
 
 const storage = multer.diskStorage({
-  destination: 'uploads/',
+  destination: './public/uploads',
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
