@@ -10,6 +10,13 @@ let port = process.env.PORT || 3000;
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('views'));
 
+if (!fs.existsSync('./tmp/uploads')) {
+  fs.mkdirSync('./tmp/uploads', { recursive: true });
+}
+if (!fs.existsSync('./tmp/clean')) {
+  fs.mkdirSync('./tmp/clean', { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: './tmp/uploads',
   filename: function (req, file, cb) {
@@ -42,7 +49,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 async function yourFunctionName() {
   console.log('Function called!');
   inputFilePath = `./tmp/uploads/${originalname}`;
-  outputFilePath = `clean/clean_${originalname}`;
+  outputFilePath = `./tmp/clean/clean_${originalname}`;
   await processInputFile(inputFilePath, outputFilePath, separator_character, num_columns);
   fs.unlink(inputFilePath, (err) => {
     if (err) {
