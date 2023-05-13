@@ -51,8 +51,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
 async function yourFunctionName() {
   console.log('Function called!');
-  inputFilePath = `./tmp/uploads/${originalname}`;
-  //inputFilePath = path.join(inputdirectory, originalname);
+  //inputFilePath = `./tmp/uploads/${originalname}`;
+  inputFilePath = path.join(inputdirectory, originalname);
   outputFilePath = `./tmp/clean/clean_${originalname}`;
   await processInputFile(inputFilePath, outputFilePath, separator_character, num_columns);
   fs.unlink(inputFilePath, (err) => {
