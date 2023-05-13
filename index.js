@@ -11,7 +11,7 @@ let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, o
 app.use(express.static('views'));
 
 const storage = multer.diskStorage({
-  destination: './public/uploads',
+  destination: './tmp/uploads',
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
@@ -41,7 +41,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
 async function yourFunctionName() {
   console.log('Function called!');
-  inputFilePath = `./public/uploads/${originalname}`;
+  inputFilePath = `./tmp/uploads/${originalname}`;
   outputFilePath = `clean/clean_${originalname}`;
   await processInputFile(inputFilePath, outputFilePath, separator_character, num_columns);
   fs.unlink(inputFilePath, (err) => {
