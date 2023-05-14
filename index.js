@@ -6,20 +6,17 @@ const app = express();
 const path = require('path');
 
 let port = process.env.PORT || 3000;
+let domain = process.env.URL || 'localhost';
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('./views'));
-// const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
-// const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
-const inputdirectory = process.env.INPUT_DIR || path.join(__dirname, '/tmp/uploads/');
-const outputdirectory = process.env.OUTPUT_DIR || path.join(__dirname, '/tmp/clean/');
- 
-// const inputdirectory = './tmp/uploads/';
-// const outputdirectory = './tmp/clean/';
-const kaka = path.join(__dirname, '/views/upload.ejs');
+const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
+const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
+const ejsdirectory = path.join(process.cwd(), '/views/upload.ejs');
+
 console.log(inputdirectory)
 console.log(outputdirectory)
-console.log(kaka)
+console.log(ejsdirectory)
 app.set('view engine', 'ejs');  
 // if (!fs.existsSync(inputdirectory)) {
 //   fs.mkdirSync(inputdirectory, { recursive: true });
@@ -41,7 +38,7 @@ var storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
-  res.render(kaka, { showDownload: false });
+  res.render(ejsdirectory, { showDownload: false });
   console.log("Inicio")
 });
 
@@ -61,9 +58,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
 async function yourFunctionName() {
   console.log('Function called!');
-  //inputFilePath = `./tmp/uploads/${originalname}`;
   inputFilePath = path.join(inputdirectory, originalname);
-  //outputFilePath = `./tmp/clean/clean_${originalname}`;
   outputFilePath = path.join(outputdirectory, `clean_${originalname}`);
   await processInputFile(inputFilePath, outputFilePath, separator_character, num_columns);
   fs.unlink(inputFilePath, (err) => {
