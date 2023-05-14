@@ -12,5 +12,11 @@
         {"src": "/(.*)","dest": "/"},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
     ],
-    "installCommand": "npm install"
+    "installCommand": "npm install",
+    "functions": {
+        "index": {
+          "handler": "./index.js",
+          "methods": ["POST"]
+        }
+      }
 }
