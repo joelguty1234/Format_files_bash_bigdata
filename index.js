@@ -13,7 +13,7 @@ app.use(express.static('./views'));
 // const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
 const inputdirectory = process.env.INPUT_DIR || path.join(process.cwd(), '/tmp/uploads/');
 const outputdirectory = process.env.OUTPUT_DIR || path.join(process.cwd(), '/tmp/clean/');
-
+ 
 // const inputdirectory = './tmp/uploads/';
 // const outputdirectory = './tmp/clean/';
 const kaka = path.join(process.cwd(), '/views/upload.ejs');
@@ -38,7 +38,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage });
+let upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
   res.render(kaka, { showDownload: false });
