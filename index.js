@@ -92,11 +92,15 @@ app.get('/download', (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 
 // app.listen(port, () => {
 //   console.log(`Server started on http://localhost:${port}`);
 // });
+
+app.listen(port, domain, () => {
+  console.log(`Server started on http://${domain}:${port}`);
+});
 
 module.exports = app;
 
