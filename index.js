@@ -7,6 +7,7 @@ const path = require('path');
 
 let port = process.env.PORT || 3000;
 let domain = process.env.URL || 'localhost';
+console.log(domain)
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
 app.use(express.static('./views'));
