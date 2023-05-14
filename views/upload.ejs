@@ -56,6 +56,14 @@
     document.getElementById("refresh").addEventListener("click", function() {
       window.location.href = "/";
     });
+
+    document.getElementById("submit").addEventListener("click", function() {
+      event.preventDefault(); // Prevent page from reloading on submit
+      
+      var formData = new FormData(this);
+      var request = new XMLHttpRequest();
+      request.open("POST", "/upload");
+    });
   </script>
 </body>
 </html>
