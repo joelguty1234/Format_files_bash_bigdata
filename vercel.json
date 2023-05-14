@@ -8,12 +8,9 @@
         }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        },
-        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
-        { "src": "/upload","methods": ["POST"], "dest": "/index.js" }
+        { "src": "/upload","methods": ["POST"], "dest": "./index.js" },
+        {"src": "/(.*)","dest": "/"},
+        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
     ],
     "installCommand": "npm install"
 }
