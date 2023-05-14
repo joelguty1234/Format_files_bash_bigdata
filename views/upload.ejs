@@ -26,24 +26,20 @@
       event.preventDefault(); // Prevent page from reloading on submit
       
       var formData = new FormData(this);
-      var request = new XMLHttpRequest();
-      request.open("POST", "/api/upload");
-      
-      request.onload = function() {
-        if (request.status === 200) {
-          document.getElementById("message1").textContent = request.responseText;
+
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("message1").textContent = data;
           document.getElementById("download").style.display = "block";
           document.getElementById("refresh").style.display = "block";
-        } else {
-          console.error("Request failed. Status: " + request.status);
-        }
-      };
-      
-      request.onerror = function() {
-        console.error("Request failed");
-      };
-      
-      request.send(formData);
+        })
+        .catch(error => {
+          console.error("Request failed:", error);
+        });
     });
 
     document.getElementById("download").addEventListener("click", function() {

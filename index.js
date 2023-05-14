@@ -1,4 +1,5 @@
 const express = require('express');
+var router = express.Router();
 const multer = require('multer');
 const { processInputFile } = require('./api/correct');
 const fs = require('fs');
