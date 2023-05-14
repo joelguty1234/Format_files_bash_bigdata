@@ -12,21 +12,21 @@
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
-        },"src": "/.*","dest": "index.js"},
+        },"src": "/.*","dest": "./index.js"},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
         {
             "src": "/",
-            "dest": "/views/upload.ejs",
+            "dest": "./index.js",
             "methods": ["GET"]
           },
           {
             "src": "/api/upload",
-            "dest": "/api/upload",
+            "dest": "./index.js",
             "methods": ["POST"]
           },
           {
             "src": "/download",
-            "dest": "/download",
+            "dest": "./index.js",
             "methods": ["GET"]
           }
     ]
