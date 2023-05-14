@@ -13,7 +13,15 @@
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
         },"src": "/.*","dest": "index.js"},
-        { "src": "/api/upload","methods": ["POST"], "dest": "/index.js" },
-        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
+        { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
+        {
+            "src": "/api/upload",
+            "methods": ["POST"],
+            "dest": "server.js"
+          },
+          {
+            "src": "/download",
+            "dest": "server.js"
+          }
     ]
 }

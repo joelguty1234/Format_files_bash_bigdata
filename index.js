@@ -19,6 +19,7 @@ console.log(inputdirectory)
 console.log(outputdirectory)
 console.log(ejsdirectory)
 app.set('view engine', 'ejs');  
+
 // if (!fs.existsSync(inputdirectory)) {
 //   fs.mkdirSync(inputdirectory, { recursive: true });
 // }
