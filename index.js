@@ -6,7 +6,7 @@ const app = express();
 const path = require('path');
 
 let port = process.env.PORT || 3000;
-let domain = process.env.URL || 'https://format-files-bash-bigdata-e8j94co75-joelguty1234.vercel.app/';
+//let domain = process.env.URL || 'https://format-files-bash-bigdata-e8j94co75-joelguty1234.vercel.app/';
 console.log(domain)
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
@@ -93,15 +93,15 @@ app.get('/download', (req, res) => {
 });
 
 
-//app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
 
 // app.listen(port, () => {
 //   console.log(`Server started on http://localhost:${port}`);
 // });
 
-app.listen(port, domain, () => {
-  console.log(`Server started on http://${domain}:${port}`);
-});
+// app.listen(port, domain, () => {
+//   console.log(`Server started on http://${domain}:${port}`);
+// });
 
 module.exports = app;
 
