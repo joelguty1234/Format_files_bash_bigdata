@@ -6,7 +6,7 @@ const app = express();
 const path = require('path');
 
 let port = process.env.PORT || 3000;
-let domain = process.env.URL || 'localhost';
+let domain = process.env.URL || 'https://format-files-bash-bigdata-e8j94co75-joelguty1234.vercel.app/';
 console.log(domain)
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
