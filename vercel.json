@@ -15,11 +15,5 @@
             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
         },"src": "/.*","dest": "index.js"},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
-    ],
-    "rewrites": [
-        {
-          "source": "/api/(.*)",
-          "destination": "/index.js"
-        }
-      ]
+    ]
 }
