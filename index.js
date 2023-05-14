@@ -11,12 +11,12 @@ let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, o
 app.use(express.static('./views'));
 // const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
 // const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
-const inputdirectory = process.env.INPUT_DIR || path.join(process.cwd(), '/tmp/uploads/');
-const outputdirectory = process.env.OUTPUT_DIR || path.join(process.cwd(), '/tmp/clean/');
+const inputdirectory = process.env.INPUT_DIR || path.join(__dirname, '/tmp/uploads/');
+const outputdirectory = process.env.OUTPUT_DIR || path.join(__dirname, '/tmp/clean/');
  
 // const inputdirectory = './tmp/uploads/';
 // const outputdirectory = './tmp/clean/';
-const kaka = path.join(process.cwd(), '/views/upload.ejs');
+const kaka = path.join(__dirname, '/views/upload.ejs');
 console.log(inputdirectory)
 console.log(outputdirectory)
 console.log(kaka)
@@ -97,8 +97,11 @@ app.get('/download', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server started on http://localhost:${port}`);
-});
+app.listen(process.env.PORT || 3000);
 
+// app.listen(port, () => {
+//   console.log(`Server started on http://localhost:${port}`);
+// });
+
+module.exports = app;
 
