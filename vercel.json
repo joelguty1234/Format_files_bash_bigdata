@@ -9,7 +9,11 @@
     ],
     "routes": [
         { "src": "/api/upload","methods": ["POST"], "dest": "/index.js" },
-        {"src": "/(.*)","dest": "/"},
+        {"headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+        },"src": "/(.*)","dest": "/"},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" }
     ]
 }
