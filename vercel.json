@@ -14,19 +14,14 @@
             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
         },"src": "/.*","dest": "./index.js"},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
-        {
-            "src": "/",
-            "dest": "./index.js",
-            "methods": ["GET"]
-          },
           {
             "src": "/api/upload",
-            "dest": "./index.js",
+            "dest": "/api/upload",
             "methods": ["POST"]
           },
           {
             "src": "/download",
-            "dest": "./index.js",
+            "dest": "/download",
             "methods": ["GET"]
           }
     ]
