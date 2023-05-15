@@ -16,10 +16,14 @@ let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, o
 const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
 const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
 const ejsdirectory = path.join(process.cwd(), '/views/upload.ejs');
+const viewsdirectory = path.join(process.cwd(), '/views/');
 
 console.log(inputdirectory)
 console.log(outputdirectory)
 console.log(ejsdirectory)
+
+
+app.set('upload', viewsdirectory);  
 app.set('view engine', 'ejs');  
 
 // if (!fs.existsSync(inputdirectory)) {
@@ -42,7 +46,7 @@ var storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
-  
+
   res.render(ejsdirectory, { showDownload: false });
   console.log("Inicio")
 });

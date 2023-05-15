@@ -1,9 +1,5 @@
 {
     "version": 2,
-    "functions": {
-        "api/upload": {
-          "handler": "index.js"
-        },
     "builds": [
         {
             "src": "index.js",
