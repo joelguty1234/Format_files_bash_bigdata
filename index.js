@@ -26,12 +26,12 @@ console.log(ejsdirectory)
 app.set('upload', viewsdirectory);  
 app.set('view engine', 'ejs');  
 
-// if (!fs.existsSync(inputdirectory)) {
-//   fs.mkdirSync(inputdirectory, { recursive: true });
-// }
-// if (!fs.existsSync(outputdirectory)) {
-//   fs.mkdirSync(outputdirectory, { recursive: true });
-// }
+if (!fs.existsSync(inputdirectory)) {
+  fs.mkdirSync(inputdirectory, { recursive: true });
+}
+if (!fs.existsSync(outputdirectory)) {
+  fs.mkdirSync(outputdirectory, { recursive: true });
+}
 
 var storage = multer.diskStorage({
   //destination: inputdirectory,
