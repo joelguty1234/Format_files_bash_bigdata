@@ -12,7 +12,7 @@ let port = process.env.PORT || 3000;
 
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
-
+let isUploadActive = false; 
 const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
 const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
 const ejsdirectory = path.join(process.cwd(), '/views/upload.ejs');
@@ -52,15 +52,31 @@ app.get('/', (req, res) => {
   console.log("Inicio")
 });
 
-app.post('/api/upload', upload.single('file'), async (req, res) => {
-  console.log(req.file)
+app.post('/api/upload', async (req, res, next) => {
+  if (isUploadActive) {
+    // If upload is already active, return an error response
+    return res.status(400).send('Upload already in progress.');
+  }
+
+  isUploadActive = true; // Set the flag to indicate that upload is active
+
   try {
-  originalname = req.file.originalname;
-  separator_character = req.body.separator_character;
-  num_columns = parseInt(req.body.num_columns);
-  await yourFunctionName();
-  res.send('File uploaded successfully!');
+    await upload.single('file')(req, res, async (err) => {
+      if (err) {
+        isUploadActive = false; // Reset the flag in case of an error
+        return res.status(500).send('File upload failed.');
+      }
+
+      console.log(req.file);
+      originalname = req.file.originalname;
+      separator_character = req.body.separator_character;
+      num_columns = parseInt(req.body.num_columns);
+      await yourFunctionName();
+      res.send('File uploaded successfully!');
+      isUploadActive = false; // Reset the flag after upload completion
+    });
   } catch (error) {
+    isUploadActive = false; // Reset the flag in case of an error
     console.error(error);
     res.status(500).send('An error occurred during file upload.');
   }
