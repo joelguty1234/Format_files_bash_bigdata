@@ -5,7 +5,8 @@
             "src": "index.js",
             "use": "@vercel/node",
             "config": { "includeFiles": ["views/**","tmp/**","api/**"] }
-        }
+        },
+        { "src": "package.json", "use": "@now/static-build" },
     ],
     "routes": [
         {"headers": {
