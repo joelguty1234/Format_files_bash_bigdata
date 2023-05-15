@@ -73,13 +73,14 @@ app.post('/api/upload', async (req, res, next) => {
       num_columns = parseInt(req.body.num_columns);
       await yourFunctionName();
       res.send('File uploaded successfully!');
-      isUploadActive = false; // Reset the flag after upload completion
+      isUploadActive = false; // Reset the flag after upload 
     });
   } catch (error) {
     isUploadActive = false; // Reset the flag in case of an error
     console.error(error);
     res.status(500).send('An error occurred during file upload.');
   }
+
 });
 
 async function yourFunctionName() {
