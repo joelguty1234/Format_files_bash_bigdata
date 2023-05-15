@@ -28,7 +28,7 @@
       var formData = new FormData(this);
 
       fetch("/api/upload", {
-        method: "POST",
+        method: "post",
         body: formData
       })
         .then(response => response.text())
