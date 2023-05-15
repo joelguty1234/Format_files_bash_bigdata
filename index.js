@@ -86,6 +86,7 @@ app.get('/download', (req, res) => {
   res.download(file, (err) => {
     if (err) {
       console.error(err);
+      console.log("error despues del post")
       return;
     }else { 
       console.log(`Download complete for file ${file}`);
