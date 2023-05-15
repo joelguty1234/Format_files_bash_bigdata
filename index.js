@@ -127,14 +127,16 @@ function deleteFilesInDirectory(directoryPath) {
     }
 
     files.forEach((file) => {
-      const filePath = path.join(directoryPath, file);
-      fs.unlink(filePath, (error) => {
-        if (error) {
-          console.error('Error deleting file:', filePath);
-        } else {
-          console.log('Deleted file:', filePath);
-        }
-      });
+      if (file !== 'data.py') {
+        const filePath = path.join(directoryPath, file);
+        fs.unlink(filePath, (error) => {
+          if (error) {
+            console.error('Error deleting file:', filePath);
+          } else {
+            console.log('Deleted file:', filePath);
+          }
+        });
+      }
     });
   });
 }
