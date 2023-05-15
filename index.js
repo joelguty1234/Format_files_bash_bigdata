@@ -82,6 +82,7 @@ async function yourFunctionName() {
 
 app.get('/download', (req, res) => {
   console.log("inicia descarga")
+  try {
   const file = `${outputFilePath}`;
   res.download(file, (err) => {
     if (err) {
@@ -98,7 +99,9 @@ app.get('/download', (req, res) => {
       console.log(`${file} was deleted`);
     })};
   });
-
+  } catch (error) {
+    console.log("error en dowload get")
+  }
 });
 
 
