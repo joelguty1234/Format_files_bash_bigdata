@@ -18,9 +18,5 @@
         { "src": "/views/style.css", "dest": "/views/style.css" },
         { "src": "/api/correct.js", "dest": "/api/correct.js" }
     ],
-    "functions": {
-        "api/correct": {
-          "handler": "api/correct.js"
-        }
-      }
+    "outputDirectory": "build"
 }
