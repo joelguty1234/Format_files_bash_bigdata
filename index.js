@@ -46,7 +46,8 @@ var storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
-
+  deleteFilesInDirectory(inputdirectory);
+  deleteFilesInDirectory(outputdirectory);
   res.render(ejsdirectory, { showDownload: false });
   console.log("Inicio")
 });
@@ -116,4 +117,25 @@ app.listen(process.env.PORT || 3000);
 // });
 
 module.exports = app;
+
+
+function deleteFilesInDirectory(directoryPath) {
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err);
+      return;
+    }
+
+    files.forEach((file) => {
+      const filePath = path.join(directoryPath, file);
+      fs.unlink(filePath, (error) => {
+        if (error) {
+          console.error('Error deleting file:', filePath);
+        } else {
+          console.log('Deleted file:', filePath);
+        }
+      });
+    });
+  });
+}
 
