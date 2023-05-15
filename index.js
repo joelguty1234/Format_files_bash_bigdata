@@ -42,6 +42,7 @@ var storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
+  
   res.render(ejsdirectory, { showDownload: false });
   console.log("Inicio")
 });
