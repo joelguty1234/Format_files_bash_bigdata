@@ -92,13 +92,8 @@ app.get('/download', (req, res) => {
       return;
     }else { 
       console.log(`Download complete for file ${file}`);
-      fs.unlink(file, (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(`${file} was deleted`);
-    })};
+      deleteFilesInDirectory(file)
+  };
   });
   } catch (error) {
     console.log("error en dowload get")
