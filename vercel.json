@@ -15,6 +15,7 @@
         },"src": "/.*","dest": "index.js"},
         { "src": "/api/upload","dest": "/index.js", "methods": ["POST"]},
         { "src": "/views/upload.ejs", "dest": "/views/upload.ejs" },
-        { "src": "/views/style.css", "dest": "/views/style.css" }
+        { "src": "/views/style.css", "dest": "/views/style.css" },
+        { "src": "/api/correct.js", "dest": "/api/correct.js" }
     ]
 }

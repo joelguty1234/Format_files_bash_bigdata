@@ -4,6 +4,7 @@ const multer = require('multer');
 const { processInputFile } = require('./api/correct');
 const fs = require('fs');
 const app = express();
+app.use(express.static('./views'));
 const path = require('path');
 
 let port = process.env.PORT || 3000;
@@ -11,7 +12,7 @@ let port = process.env.PORT || 3000;
 
 
 let inputFilePath , outputFilePath, separator_character = '', num_columns = 0, originalname = '';
-app.use(express.static('./views'));
+
 const inputdirectory = path.join(process.cwd(), '/tmp/uploads/');
 const outputdirectory = path.join(process.cwd(), '/tmp/clean/');
 const ejsdirectory = path.join(process.cwd(), '/views/upload.ejs');
