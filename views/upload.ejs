@@ -33,8 +33,11 @@
       })
         .then(response => response.text())
         .then(data => {
+          if (data.includes("Upload already in progress.")) {
           document.getElementById("message1").textContent = data;
+          }
           if (data.includes("File uploaded successfully!")) {
+            document.getElementById("message1").textContent = data;
             document.getElementById("download").style.display = "block";
             document.getElementById("refresh").style.display = "block";
           }
