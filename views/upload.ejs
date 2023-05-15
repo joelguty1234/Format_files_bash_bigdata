@@ -34,8 +34,10 @@
         .then(response => response.text())
         .then(data => {
           document.getElementById("message1").textContent = data;
-          document.getElementById("download").style.display = "block";
-          document.getElementById("refresh").style.display = "block";
+          if (data.includes("File uploaded successfully!")) {
+            document.getElementById("download").style.display = "block";
+            document.getElementById("refresh").style.display = "block";
+          }
         })
         .catch(error => {
           console.error("Request failed:", error);

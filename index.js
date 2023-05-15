@@ -61,7 +61,7 @@ app.post('/api/upload', async (req, res, next) => {
   isUploadActive = true; // Set the flag to indicate that upload is active
 
   try {
-    await upload.single('file')(req, res, async (err) => {
+    upload.single('file')(req, res, async (err) => {
       if (err) {
         isUploadActive = false; // Reset the flag in case of an error
         return res.status(500).send('File upload failed.');
