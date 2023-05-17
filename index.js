@@ -1,11 +1,11 @@
 const express = require('express');
-var router = express.Router();
 const multer = require('multer');
 const { processInputFile } = require('./api/correct');
 const fs = require('fs');
 const app = express();
 app.use(express.static('./views'));
 const path = require('path');
+const ejs = require('ejs');
 
 let port = process.env.PORT || 3000;
 //let domain = process.env.URL || 'https://format-files-bash-bigdata-e8j94co75-joelguty1234.vercel.app/';
@@ -33,7 +33,7 @@ if (!fs.existsSync(outputdirectory)) {
   fs.mkdirSync(outputdirectory, { recursive: true });
 }
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
   //destination: inputdirectory,
   destination: function (req, file, cb) {
     cb(null, inputdirectory)
@@ -118,15 +118,11 @@ app.get('/download', (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000);
 
-// app.listen(port, () => {
-//   console.log(`Server started on http://localhost:${port}`);
-// });
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server is running on port http://localhost:${process.env.PORT || 3000}`);
+});
 
-// app.listen(port, domain, () => {
-//   console.log(`Server started on http://${domain}:${port}`);
-// });
 
 module.exports = app;
 

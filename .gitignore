@@ -16,3 +16,5 @@ node_modules
 files
 .vercel
 origin.js
+index-*
+1_correct_dat-*
